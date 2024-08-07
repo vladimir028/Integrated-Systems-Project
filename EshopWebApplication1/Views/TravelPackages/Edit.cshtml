@@ -1,0 +1,52 @@
+﻿@model Eshop.DomainEntities.TravelPackage
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 main-container">
+            <h1 class="text-center text-highlight">Edit Travel Package: @Model.Name</h1>
+            <hr />
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label text-highlight"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label text-highlight"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label text-highlight"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageTextBox" class="control-label text-highlight"></label>
+                    <textarea asp-for="ImageTextBox" class="form-control"></textarea>
+                    <span asp-validation-for="ImageTextBox" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AgencyId" class="control-label text-highlight"></label>
+                    <select asp-for="AgencyId" class="form-control" asp-items="ViewBag.AgencyId"></select>
+                </div>
+                <div class="form-group text-center mt-4">
+                    <input type="submit" value="Edit" class="btn btn-custom btn-block" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-custom btn-block">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

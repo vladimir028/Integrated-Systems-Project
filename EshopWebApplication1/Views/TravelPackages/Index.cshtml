@@ -1,0 +1,77 @@
+﻿@model List<Eshop.DomainEntities.TravelPackage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<a asp-action="Create" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black ">Create New</a>
+
+<div class="container-fluid py-5" style="background-color: #F2F3F4">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        var item = Model[i];
+
+        <div class="container w-75 border rounded-3 mb-3 py-4 px-4 bg-light shadow">
+            <div class="row">
+                <div class="col">
+                    <div id="carousel-@item.Id" class="carousel slide w-75" data-bs-ride="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+
+
+                                <a asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none"> <img src="@item.Images.ElementAt(0)" class="d-block w-100" alt="..."></a>
+                            </div>
+                            @foreach (var img in item.Images.Skip(1).Take(3))
+                            {
+
+                                <div class="carousel-item">
+                                    <a asp-action="Details" asp-route-id="@item.Id" style="text-decoration:none"><img src="@img" class="d-block w-100" alt="..."></a>
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@item.Id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-@item.Id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>@item.Name</h4>
+                    <p>@item.Description.Substring(0, Math.Min(200, item.Description.Length)) ...</p>
+                    <div class="row">
+                        <div class="col">
+                            <p><b>Agency name:</b> @item.Agency.Name</p>
+                            <p><b>Agency mail:</b> @item.Agency.Email</p>
+                            <p><b>Agency phone: </b>@item.Agency.Phone</p>
+                        </div>
+                        <div class="col" style="align-content: center">
+                           
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: white; width: 3em; margin-right: 0.2em">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                    </svg>
+                                </a>
+
+
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" style="width: 3em; margin-right: 0.2em">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+
+                                    </svg>
+                                </a>
+                            
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+        </div>
+
+    }
