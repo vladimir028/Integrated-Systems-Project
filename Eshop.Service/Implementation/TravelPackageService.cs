@@ -16,11 +16,11 @@ namespace Eshop.Service.Implementation
     public class TravelPackageService : ITravelPackageService
     {
         private readonly IRepository<TravelPackage> _travelPackageRepository;
-        private readonly IRepository<ProductsInShoppingCart> _productInShoppingCartRepository;
+        private readonly IRepository<TravelPackageInShoppingCart> _productInShoppingCartRepository;
         private readonly IRepository<Agency> _agencyRepository;
         private readonly IUserRepository _userRepository;
         private readonly ILogger<TravelPackageService> _logger;
-        public TravelPackageService(IRepository<Agency> agencyRepository, IRepository<TravelPackage> travelPackageRepository, ILogger<TravelPackageService> logger, IRepository<ProductsInShoppingCart> productInShoppingCartRepository, IUserRepository userRepository)
+        public TravelPackageService(IRepository<Agency> agencyRepository, IRepository<TravelPackage> travelPackageRepository, ILogger<TravelPackageService> logger, IRepository<TravelPackageInShoppingCart> productInShoppingCartRepository, IUserRepository userRepository)
         {
             _travelPackageRepository = travelPackageRepository;
             _userRepository = userRepository;

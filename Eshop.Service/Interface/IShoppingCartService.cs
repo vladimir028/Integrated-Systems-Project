@@ -12,6 +12,6 @@ namespace Eshop.Service.Interface
         ShoppingCartDto getShoppingCartInfo(string userId);
         bool deleteProductFromSoppingCart(string userId, Guid productId);
         bool order(string userId);
-        bool AddToShoppingConfirmed(ProductsInShoppingCart model, string userId);
+        bool AddToShoppingConfirmed(TravelPackageInShoppingCart model, string userId);
     }
 }

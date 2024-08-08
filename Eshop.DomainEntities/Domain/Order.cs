@@ -4,6 +4,6 @@
     {
 
         public Guid EshopApplicationUserId { get; set; }
-        public virtual List<ProductsInOrders>? ProductsInOrders { get; set; }
+        public virtual List<TravelPackageInOrders>? TravelPackageInOrders { get; set; }
     }
 }

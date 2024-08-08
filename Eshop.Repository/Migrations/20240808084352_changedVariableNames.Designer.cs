@@ -4,6 +4,7 @@ using EshopWebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EshopWebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240808084352_changedVariableNames")]
+    partial class changedVariableNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,7 +230,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("TravelPackageId");
 
-                    b.ToTable("TravelPackageInOrders");
+                    b.ToTable("ProductsInOrders");
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.TravelPackageInShoppingCart", b =>
@@ -251,7 +254,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("TravelPackageId");
 
-                    b.ToTable("TravelPackageInShoppingCarts");
+                    b.ToTable("ProductsInShoppingCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

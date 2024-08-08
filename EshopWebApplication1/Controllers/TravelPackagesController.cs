@@ -55,19 +55,19 @@ namespace EshopWebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(TravelPackage product)
+        public IActionResult Create(TravelPackage travelPackage)
         {
             //if (!ModelState.IsValid)
             //{ 
-            //    return View(product);
+            //    return View(travelPackage);
             //}
-            _travelPackageService.CreateNewTravelPackage(product);
+            _travelPackageService.CreateNewTravelPackage(travelPackage);
             
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToCartConfirmed(ProductsInShoppingCart model)
+        public async Task<IActionResult> AddToCartConfirmed(TravelPackageInShoppingCart model)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "";
             _shoppingCartService.AddToShoppingConfirmed(model, userId);
@@ -79,9 +79,9 @@ namespace EshopWebApplication1.Controllers
             {
                 return NotFound();
             }
-            var product = _travelPackageService.GetDetailsForTravelPackage(id);
-            ProductsInShoppingCart ps = new ProductsInShoppingCart();
-            ps.ProductId = product.Id;
+            var travelPackage = _travelPackageService.GetDetailsForTravelPackage(id);
+            TravelPackageInShoppingCart ps = new TravelPackageInShoppingCart();
+            ps.TravelPackageId = travelPackage.Id;
             return View(ps);
         }
 

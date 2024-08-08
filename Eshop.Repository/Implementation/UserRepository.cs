@@ -30,7 +30,7 @@ namespace Eshop.Repository.Implementation
         public EshopApplicationUser Get(string id)
         {
             var strGuid = id.ToString();
-            return entities.Include(z=>z.UserCart).Include(z => z.UserCart.ProductsInShoppingCarts).Include("UserCart.ProductsInShoppingCarts.Product").SingleOrDefault(s => s.Id == strGuid);
+            return entities.Include(z=>z.UserCart).Include(z => z.UserCart.TravelPackagesInShoppingCarts).Include("UserCart.TravelPackagesInShoppingCarts.TravelPackage").SingleOrDefault(s => s.Id == strGuid);
         }
         public void Insert(EshopApplicationUser entity)
         {

@@ -16,12 +16,12 @@ namespace Eshop.Service.Implementation
         private readonly IRepository<ShoppingCart> _shoppingCartRepository;
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<EmailMessage> _mailRepository;
-        private readonly IRepository<ProductsInOrders> _productInOrderRepository;
-        private readonly IRepository<ProductsInShoppingCart> _productInShoppingCartRepository;
+        private readonly IRepository<TravelPackageInOrders> _productInOrderRepository;
+        private readonly IRepository<TravelPackageInShoppingCart> _productInShoppingCartRepository;
         private readonly IUserRepository _userRepository;
         private readonly IEmailService _emailService;
 
-        public ShoppingCartService(IRepository<ShoppingCart> shoppingCartRepository, IUserRepository userRepository, IRepository<Order> orderRepository, IRepository<ProductsInOrders> productInOrderRepository, IRepository<ProductsInShoppingCart> productInShoppingCartRepository, IRepository<EmailMessage> mailRepository, IEmailService emailService)
+        public ShoppingCartService(IRepository<ShoppingCart> shoppingCartRepository, IUserRepository userRepository, IRepository<Order> orderRepository, IRepository<TravelPackageInOrders> productInOrderRepository, IRepository<TravelPackageInShoppingCart> productInShoppingCartRepository, IRepository<EmailMessage> mailRepository, IEmailService emailService)
         {
             _shoppingCartRepository = shoppingCartRepository;
             _userRepository = userRepository;
@@ -41,9 +41,9 @@ namespace Eshop.Service.Implementation
 
                 var userShoppingCart = loggedInUser.UserCart;
 
-                var itemToDelete = userShoppingCart.ProductsInShoppingCarts.Where(z => z.ProductId.Equals(productId)).FirstOrDefault();
+                var itemToDelete = userShoppingCart.TravelPackagesInShoppingCarts.Where(z => z.TravelPackageId.Equals(productId)).FirstOrDefault();
 
-                userShoppingCart.ProductsInShoppingCarts.Remove(itemToDelete);
+                userShoppingCart.TravelPackagesInShoppingCarts.Remove(itemToDelete);
 
                 this._shoppingCartRepository.Update(userShoppingCart);
 
@@ -59,25 +59,25 @@ namespace Eshop.Service.Implementation
 
             ShoppingCartDto model = new ShoppingCartDto()
             {
-                ProductsInShoppingCarts = shoppingCart.ProductsInShoppingCarts ?? new List<ProductsInShoppingCart>(),
-                TotalPrice = shoppingCart.ProductsInShoppingCarts.Sum(z => z.Quantity * z.Product.Price)
+                ProductsInShoppingCarts = shoppingCart.TravelPackagesInShoppingCarts ?? new List<TravelPackageInShoppingCart>(),
+                TotalPrice = shoppingCart.TravelPackagesInShoppingCarts.Sum(z => z.NumberOfTravelers * z.TravelPackage.Price)
 
             };
             return model;
         }
 
-        public bool AddToShoppingConfirmed(ProductsInShoppingCart model, string userId)
+        public bool AddToShoppingConfirmed(TravelPackageInShoppingCart model, string userId)
         {
             var user = this._userRepository.Get(userId);
             var shoppingCart = user.UserCart;
-            ProductsInShoppingCart itemToAdd = new ProductsInShoppingCart
+            TravelPackageInShoppingCart itemToAdd = new TravelPackageInShoppingCart
             {
                 Id = Guid.NewGuid(),
-                Product = model.Product,
-                ProductId = model.ProductId,
+                TravelPackage = model.TravelPackage,
+                TravelPackageId = model.TravelPackageId,
                 ShoppingCart = shoppingCart,
                 ShoppingCartId = shoppingCart.Id,
-                Quantity = model.Quantity
+                NumberOfTravelers = model.NumberOfTravelers
             };
 
             _productInShoppingCartRepository.Insert(itemToAdd);
@@ -103,16 +103,16 @@ namespace Eshop.Service.Implementation
                 };
                 this._orderRepository.Insert(order);
 
-                List<ProductsInOrders> productInOrders = new List<ProductsInOrders>();
+                List<TravelPackageInOrders> productInOrders = new List<TravelPackageInOrders>();
 
-                var result = userCard.ProductsInShoppingCarts.Select(z => new ProductsInOrders
+                var result = userCard.TravelPackagesInShoppingCarts.Select(z => new TravelPackageInOrders
                 {
                     Id = Guid.NewGuid(),
-                    ProductId = z.Product.Id,
-                    Product = z.Product,
+                    TravelPackageId = z.TravelPackage.Id,
+                    TravelPackage = z.TravelPackage,
                     OrderId = order.Id,
                     UserOrder = order,
-                    Quantity = z.Quantity
+                    NumberOfTravelers = z.NumberOfTravelers
                 }).ToList();
 
                 StringBuilder sb = new StringBuilder();
@@ -124,8 +124,8 @@ namespace Eshop.Service.Implementation
                 for (int i = 1; i <= result.Count(); i++)
                 {
                     var currentItem = result[i - 1];
-                    totalPrice += currentItem.Quantity * currentItem.Product.Price;
-                    sb.AppendLine(i.ToString() + ". " + currentItem.Product.Name + " with quantity of: " + currentItem.Quantity + " and price of: $" + currentItem.Product.Price);
+                    totalPrice += currentItem.NumberOfTravelers * currentItem.TravelPackage.Price;
+                    sb.AppendLine(i.ToString() + ". " + currentItem.TravelPackage.Name + " with quantity of: " + currentItem.NumberOfTravelers + " and price of: $" + currentItem.TravelPackage.Price);
                 }
 
                 sb.AppendLine("Total price for your order: " + totalPrice.ToString());
@@ -139,7 +139,7 @@ namespace Eshop.Service.Implementation
                     this._productInOrderRepository.Insert(item);
                 }
 
-                loggedInUser.UserCart.ProductsInShoppingCarts.Clear();
+                loggedInUser.UserCart.TravelPackagesInShoppingCarts.Clear();
 
                 this._userRepository.Update(loggedInUser);
                 this._mailRepository.Insert(message);

@@ -1,24 +1,29 @@
-﻿@model Eshop.DomainEntities.ProductsInShoppingCart
+﻿@model Eshop.DomainEntities.TravelPackageInShoppingCart
 
 
 
-<h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddToCartConfirmed">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <input type="hidden" asp-for="ProductId" class="form-control" />
-            <input type="hidden" asp-for="ShoppingCartId" class="form-control" />
+<div class="container mt-5">
+    <h4 class="mb-4">Hang on! Just enter the number of people who will be traveling with you before you add this trip to your whishlist</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <form asp-action="AddToCartConfirmed" class="shadow p-4 rounded bg-light">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-            <div class="form-group">
-                <input type="submit" value="Add to cart" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group mb-3">
+                    <label asp-for="NumberOfTravelers" class="form-label">Number of Travelers</label>
+                    <input asp-for="NumberOfTravelers" class="form-control" />
+                    <span asp-validation-for="NumberOfTravelers" class="text-danger"></span>
+                </div>
+
+                <input type="hidden" asp-for="TravelPackageId" />
+                <input type="hidden" asp-for="ShoppingCartId" />
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Add this trip to your whishlist" class="btn btn-custom btn-block" />
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+

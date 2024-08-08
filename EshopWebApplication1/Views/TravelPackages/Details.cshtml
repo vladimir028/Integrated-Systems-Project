@@ -33,9 +33,6 @@
             <h4>Trip Name: @Model.Name</h4>
             <h6>Price: @Model.Price.ToString("C2")</h6>
             <hr />
-            @* <p style="font-size:0.8em">Agency Address</p>
-            <h4>@Model?.Agency?.Address</h4> *@
-            <hr />
             <h4>Detailed Description</h4>
             <h6>@Model?.Description</h6>
             <hr />
@@ -44,7 +41,7 @@
             <hr />
         </div>
         <div class="col-4 p-4 border shadow rounded-3" style="height: 50%">
-            <div class="container">
+            <div>
                     <div class="container-fluid ">
                         <p style="font-size:0.8em">Marketed By</p>
                         <p>Agency Name:<b>@Model?.Agency?.Name</b></p>
@@ -54,7 +51,7 @@
                 <div class="container rounded py-2 px-4" style="background-color:#000433">
                     <p style="color:#00deb6">Email: <span style="color: white">@Model.Agency.Email</span></p>
                     <p style="color:#00deb6">Call: <span style="color: white">@Model.Agency.Phone</span></p>
-                    <button class="btn-lg text-center w-100 m-auto rounded" style="background-color: #00deb6">Book this trip!</button>
+                    <a asp-action="AddToCart" asp-route-id="@Model.Id" class="btn-lg text-center w-100 m-auto rounded" style="background-color: #00deb6; color: white">Book this trip!</a>
                 </div>
             </div>
 
