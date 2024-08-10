@@ -48,7 +48,7 @@
                         <p style="font-size:0.9em">Location: @Model?.Agency?.Address</p>
                     </div>
 
-                <div class="container rounded py-2 px-4" style="background-color:#000433">
+                <div class="container rounded py-2 px-4 bg-dark">
                     <p style="color:#00deb6">Email: <span style="color: white">@Model.Agency.Email</span></p>
                     <p style="color:#00deb6">Call: <span style="color: white">@Model.Agency.Phone</span></p>
                     <a asp-action="AddToCart" asp-route-id="@Model.Id" class="btn-lg text-center w-100 m-auto rounded" style="background-color: #00deb6; color: white">Book this trip!</a>

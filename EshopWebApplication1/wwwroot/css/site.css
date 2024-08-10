@@ -40,3 +40,15 @@ body {
 .text-highlight {
     color: #667874;
 }
+.blur-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://wallpaperswide.com/download/green_tropical_waterfall-wallpaper-2880x1620.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(2.6px);
+    z-index: 0;
+}

@@ -2,7 +2,65 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section -->
+<div class="jumbotron jumbotron-fluid text-white text-center position-relative" style="height: 100vh; margin-bottom: 0;">
+    <div class="blur-bg"></div>
+    <div class="container position-relative" style="z-index: 1;">
+        <h1 class="display-3">Discover Your Next Adventure</h1>
+        <p class="lead">Explore the world with our curated travel packages.</p>
+         
+        <a href="#packages" class="btn btn-custom btn-block btn-lg mt-4">Browse Packages</a>
+    </div>
+</div>
+
+<!-- Featured Packages Section -->
+<div id="packages" class="container mt-5">
+    <h2 class="text-center mb-4">Featured Packages</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg" alt="Beach">
+                <div class="card-body">
+                    <h5 class="card-title">Tropical Getaway</h5>
+                    <p class="card-text">Enjoy the sun and sand in this exotic destination.</p>
+                    <input type="submit" value="Learn More" class="btn btn-custom btn-block" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="https://wallpapers.com/images/hd/4k-mountain-l3f04sogeaabr5h0.jpg" alt="Mountains">
+                <div class="card-body">
+                    <h5 class="card-title">Mountain Adventure</h5>
+                    <p class="card-text">Experience the thrill of the mountains with this package.</p>
+                    <input type="submit" value="Learn More" class="btn btn-custom btn-block" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="https://img.freepik.com/free-photo/view-urban-city-night_23-2150840697.jpg" alt="City">
+                <div class="card-body">
+                    <h5 class="card-title">City Escapade</h5>
+                    <p class="card-text">Explore vibrant cities with our exclusive deals.</p>
+                    <input type="submit" value="Learn More" class="btn btn-custom btn-block" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call-to-Action Section -->
+<div class="jumbotron jumbotron-fluid bg-dark text-white mt-5 mb-0">
+    <div class="container text-center">
+        <h2 class="display-4">Ready to start your journey?</h2>
+        <p class="lead">Sign up for our newsletter to get the latest deals and travel tips.</p>
+        <form class="form-inline justify-content-center">
+            <div class="form-group mb-2">
+                <label for="email" class="sr-only">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            </div>
+            <input type="submit" value="Subscribe" class="btn btn-custom btn-block mb-2 ml-2" />
+        </form>
+    </div>
 </div>
