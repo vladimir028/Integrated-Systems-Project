@@ -13,7 +13,7 @@ namespace Eshop.Service.Interface
         List<Agency> GetAllAgencies();
         Agency GetDetailsForAgency(Guid? id);
         void CreateNewAgency(Agency p);
-        void UpdeteExistingAgency(Agency p);
+        void UpdateExistingAgency(Agency p);
         void DeleteAgency(Guid id);
     }
 }

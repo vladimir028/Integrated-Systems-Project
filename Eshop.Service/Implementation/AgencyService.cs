@@ -38,7 +38,7 @@ namespace Eshop.Service.Implementation
             return agencyRepository.Get(id);
         }
 
-        public void UpdeteExistingAgency(Agency p)
+        public void UpdateExistingAgency(Agency p)
         {
            agencyRepository.Update(p);
         }

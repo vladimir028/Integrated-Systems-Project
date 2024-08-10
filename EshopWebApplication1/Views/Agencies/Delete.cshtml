@@ -1,4 +1,4 @@
-﻿@model Eshop.DomainEntities.TravelPackage
+﻿@model Eshop.DomainEntities.Domain.Agency
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,16 +12,22 @@
         <hr />
         <dl class="row">
             <dt class="col-sm-4 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.Email)
             </dt>
             <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Price)
+                @Html.DisplayFor(model => model.Email)
             </dd>
             <dt class="col-sm-4 font-weight-bold">
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.Phone)
             </dt>
             <dd class="col-sm-8">
-                @Html.DisplayFor(model => model.Description)
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Address)
             </dd>
         </dl>
     </div>

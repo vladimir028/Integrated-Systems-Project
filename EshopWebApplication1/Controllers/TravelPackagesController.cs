@@ -29,20 +29,20 @@ namespace EshopWebApplication1.Controllers
 
         }
 
-        // GET: Products
+        // GET: TravelPackages
         public IActionResult Index()
         {
             return View(_travelPackageService.GetAllTravelPackages());
         }
 
-        // GET: Products/Details/5
+        // GET: TravelPackages/Details/5
         public IActionResult Details(Guid? id)
         {
-            var product = _travelPackageService.GetDetailsForTravelPackage(id); 
-            return View(product);
+            var travelPackage = _travelPackageService.GetDetailsForTravelPackage(id); 
+            return View(travelPackage);
         }
 
-        // GET: Products/Create
+        // GET: TravelPackages/Create
         public IActionResult Create()
         {
             List<Agency> agencies = _agencyService.GetAllAgencies();
@@ -50,9 +50,7 @@ namespace EshopWebApplication1.Controllers
             return View();
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TravelPackages/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(TravelPackage travelPackage)
@@ -73,6 +71,7 @@ namespace EshopWebApplication1.Controllers
             _shoppingCartService.AddToShoppingConfirmed(model, userId);
             return View("Index", _travelPackageService.GetAllTravelPackages());
         }
+
         public async Task<IActionResult> AddToCart(Guid? id)
         {
             if (id == null)
@@ -85,7 +84,7 @@ namespace EshopWebApplication1.Controllers
             return View(ps);
         }
 
-        // GET: Products/Edit/5
+        // GET: TravelPackages/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -94,17 +93,15 @@ namespace EshopWebApplication1.Controllers
             }
             List<Agency> agencies = _agencyService.GetAllAgencies();
             ViewData["AgencyId"] = new SelectList(agencies, "Id", "Name");
-            var product =  _travelPackageService.GetDetailsForTravelPackage(id);
-            if (product == null)
+            var travelPackage =  _travelPackageService.GetDetailsForTravelPackage(id);
+            if (travelPackage == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(travelPackage);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TravelPackage/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Price,Description,ImageTextBox,AgencyId")] TravelPackage travelPackage)
@@ -129,7 +126,7 @@ namespace EshopWebApplication1.Controllers
             return View(travelPackage);
         }
 
-        // GET: Products/Delete/5
+        // GET: TravelPackage/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -137,22 +134,22 @@ namespace EshopWebApplication1.Controllers
                 return NotFound();
             }
 
-            var product = _travelPackageService.GetDetailsForTravelPackage(id);
-            if (product == null)
+            var travelPackage = _travelPackageService.GetDetailsForTravelPackage(id);
+            if (travelPackage == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(travelPackage);
         }
 
-        // POST: Products/Delete/5
+        // POST: TravelPackage/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var product = _travelPackageService.GetDetailsForTravelPackage(id);
-            if (product != null)
+            var travelPackage = _travelPackageService.GetDetailsForTravelPackage(id);
+            if (travelPackage != null)
             {
                 _travelPackageService.DeleteTravelPackage(id);
             }

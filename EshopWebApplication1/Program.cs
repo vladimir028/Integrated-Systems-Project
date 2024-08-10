@@ -22,23 +22,16 @@ builder.Services.AddDefaultIdentity<EshopApplicationUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-
-
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
-
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
-
-
-builder.Services.AddTransient<ITravelPackageService, Eshop.Service.Implementation.TravelPackageService>();
 
 builder.Services.AddTransient<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddTransient<IAgencyService, AgencyService>();
-
+builder.Services.AddTransient<ITravelPackageService, TravelPackageService>();
 
 builder.Services.AddScoped<IEmailService, EmailService>();
-
 
 var app = builder.Build();
 
