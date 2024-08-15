@@ -17,14 +17,20 @@ namespace EshopWebApplication1.Controllers
     {
         private readonly ITravelPackageService _travelPackageService;
         private readonly IShoppingCartService _shoppingCartService;
+        private readonly IItineraryService _itineraryService;
+        private readonly IPlannedRouteService _plannedRouteService;
         private readonly IAgencyService _agencyService;
 
         public TravelPackagesController(ITravelPackageService? productService, 
             IShoppingCartService? shoppingCartService,
+             IItineraryService itineraryService,
+             IPlannedRouteService plannedRouteService,
             IAgencyService agencyService)
         {
             _travelPackageService = productService;
             _shoppingCartService = shoppingCartService;
+            _itineraryService = itineraryService;
+            _plannedRouteService = plannedRouteService;
             _agencyService = agencyService;
 
         }
@@ -38,7 +44,13 @@ namespace EshopWebApplication1.Controllers
         // GET: TravelPackages/Details/5
         public IActionResult Details(Guid? id)
         {
-            var travelPackage = _travelPackageService.GetDetailsForTravelPackage(id); 
+            var travelPackage = _travelPackageService.GetDetailsForTravelPackage(id);
+            var itinerary = _itineraryService.GetItineratyForTravelPackage(id);
+            var planningRoute = _plannedRouteService.getPlanningRouteForItineraty(itinerary.Id);
+
+            ViewBag.Route = planningRoute;
+            ViewBag.Itinerary = itinerary;
+
             return View(travelPackage);
         }
 

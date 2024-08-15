@@ -37,7 +37,10 @@
             <h6>@Model?.Description</h6>
             <hr />
             <h4>Itinerary / Planned route</h4>
-            <h6>Treba da se dopravi!!!</h6>
+            <a asp-controller="PlannedRoutes" asp-action="Details" asp-route-id="@ViewBag.Route.Id">Check Full Itinerary</a>
+            <h6>@ViewBag.Route.RouteDescription</h6>
+            <h6>@ViewBag.Route.Activity</h6>
+            <h6>@ViewBag.Route.StartFrom</h6>
             <hr />
         </div>
         <div class="col-4 p-4 border shadow rounded-3" style="height: 50%">

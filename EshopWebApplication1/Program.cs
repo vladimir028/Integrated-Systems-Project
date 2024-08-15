@@ -30,6 +30,8 @@ builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Str
 builder.Services.AddTransient<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddTransient<IAgencyService, AgencyService>();
 builder.Services.AddTransient<ITravelPackageService, TravelPackageService>();
+builder.Services.AddTransient<IItineraryService, ItineraryService>();
+builder.Services.AddTransient<IPlannedRouteService, PlannedRouteService>();
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 

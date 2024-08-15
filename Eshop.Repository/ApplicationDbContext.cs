@@ -16,6 +16,8 @@ namespace EshopWebApplication1.Data
 
         public DbSet<TravelPackageInOrders> TravelPackageInOrders { get; set; }
         public DbSet<EmailMessage> EmailMessages { get; set; }
+        public DbSet<Itinerary> Itineraries { get; set; }
+        public DbSet<PlannedRoute> PlannedRoutes { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options)
         { }

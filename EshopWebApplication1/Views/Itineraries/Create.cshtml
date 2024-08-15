@@ -1,0 +1,50 @@
+﻿@using Eshop.DomainEntities.Domain
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Eshop.DomainEntities.Domain.Itinerary
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 main-container">
+            <h1 class="text-center text-highlight">Create Itinerary for a Certain Travel Package</h1>
+            <hr />
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label text-highlight"></label>
+                    <input asp-for="StartDate" class="form-control" type="date"/>
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label text-highlight"></label>
+                    <input asp-for="EndDate" class="form-control" type="date"/>
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TravelPackageId" class="control-label text-highlight"></label>
+                    <select asp-for="TravelPackageId" class="form-control" asp-items="ViewBag.TravelPackageId"></select>
+                </div>
+               @*  @for(var i=0; i<Model.PlannedRoutes.Count; i++)
+                {
+                    PlannedRoute plannedActivity = Model.PlannedRoutes[i];
+                    <div class="form-group">
+                        <label asp-for="PlannedRoutes[i].StartingTime" class="control-label text-highlight"></label>
+                        <input asp-for="PlannedRoutes[i].StartingTime" class="form-control" />
+                        <span asp-validation-for="PlannedRoutes[i].StartingTime" class="text-danger"></span>
+                    </div>
+                } *@
+                <div class="form-group text-center mt-4">
+                    <input type="submit" value="Create" class="btn btn-custom btn-block" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-custom btn-block">Back to List</a>
+</div>
