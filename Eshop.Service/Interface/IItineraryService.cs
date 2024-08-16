@@ -14,6 +14,7 @@ namespace Eshop.Service.Interface
         bool CreateNewItinerary(Itinerary i);
         void UpdateExistingItinerary(Itinerary i);
         void DeleteItinerary(Guid id);
+        //TravelPackageId
         Itinerary GetItineratyForTravelPackage(Guid? id);
     }
 }

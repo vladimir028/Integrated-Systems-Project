@@ -46,9 +46,7 @@ namespace EshopWebApplication1.Controllers
         {
             var travelPackage = _travelPackageService.GetDetailsForTravelPackage(id);
             var itinerary = _itineraryService.GetItineratyForTravelPackage(id);
-            var planningRoute = _plannedRouteService.getPlanningRouteForItineraty(itinerary.Id);
-
-            ViewBag.Route = planningRoute;
+          
             ViewBag.Itinerary = itinerary;
 
             return View(travelPackage);

@@ -1,0 +1,46 @@
+﻿@model Eshop.DomainEntities.Domain.PlannedRoute
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 main-container">
+            <h1 class="text-center text-highlight">Edit your plan</h1>
+            <hr />
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="@Model.RouteDescription" class="control-label text-highlight"></label>
+                        <input asp-for="@Model.RouteDescription" class="form-control" />
+                        <span asp-validation-for="@Model.RouteDescription" class="text-danger"></span>
+                    </div>
+                    @for (int j = 0; j < Model.Activities.Count; j++)
+                    {
+                        <div class="form-group">
+                            <label asp-for="@Model.Activities[j].StartingTime" class="control-label text-highlight"></label>
+                            <input asp-for="@Model.Activities[j].StartingTime" class="form-control" type="time" />
+                            <span asp-validation-for="@Model.Activities[j].StartingTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Activities[j].EndingTime" class="control-label text-highlight"></label>
+                            <input asp-for="@Model.Activities[j].EndingTime" class="form-control" type="time" />
+                            <span asp-validation-for="@Model.Activities[j].EndingTime" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Activities[j].ThingsToDo" class="control-label text-highlight"></label>
+                            <textarea asp-for="@Model.Activities[j].ThingsToDo" class="form-control"></textarea>
+                            <span asp-validation-for="@Model.Activities[j].ThingsToDo" class="text-danger"></span>
+                        </div>
+                    }
+                <div class="form-group text-center mt-4">
+                    <input type="submit" value="Edit" class="btn btn-custom btn-block" />
+                </div>
+
+                <input type="hidden" value="@ViewBag.ItineraryId" asp-for="@Model.ItineraryId" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-custom btn-block">Back to List</a>
+</div>

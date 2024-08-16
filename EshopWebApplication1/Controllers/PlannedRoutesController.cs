@@ -59,9 +59,11 @@ namespace EshopWebApplication1.Controllers
             foreach (var route in planningRoutes)
             {
                 plannedRouteService.CreateNewPlanningRoute(route);
+                //Itinerary itinerary = itineraryService.GetDetailsForItinerary(route.ItineraryId);
+                //itineraryService.UpdateExistingItinerary(itinerary);
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Itineraries");
         }
 
         // GET: plannedRoute/Edit/5
@@ -72,6 +74,7 @@ namespace EshopWebApplication1.Controllers
                 return NotFound();
             }
             var route = plannedRouteService.GetDetailsForPlanningRoute(id);
+            ViewBag.ItineraryId = route.ItineraryId;
             if (route == null)
             {
                 return NotFound();
@@ -82,25 +85,27 @@ namespace EshopWebApplication1.Controllers
         // POST: plannedRoute/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Email,Phone,Address")] PlannedRoute plannedRoute)
+        public async Task<IActionResult> Edit(Guid id, PlannedRoute plannedRoute)
         {
             if (id != plannedRoute.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    plannedRouteService.UpdateExistingPlanningRoute(plannedRoute);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
-                return RedirectToAction(nameof(Index));
-            }
+            plannedRouteService.UpdateExistingPlanningRoute(plannedRoute);
+            return RedirectToAction(nameof(Index));
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+                    
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        throw;
+            //    }
+            //    return RedirectToAction(nameof(Index));
+            //}
             return View(plannedRoute);
         }
 

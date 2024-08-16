@@ -1,4 +1,5 @@
-﻿@model List<Eshop.DomainEntities.Domain.Agency>
+﻿@model List<Eshop.DomainEntities.Domain.Itinerary>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -6,14 +7,15 @@
 
 <a asp-action="Create" class="btn btn-primary mb-4" style="background-color: #00deb6; border-color: #00deb6; color: black">Create New</a>
 
+
 <div style="background-color: #F2F3F4; padding: 20px; border-radius: 15px;">
     <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
         <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
             <tr>
-                <th scope="col" style="border-top-left-radius: 15px;">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Address</th>
+                <th scope="col" style="border-top-left-radius: 15px;">Trip Starts</th>
+                <th scope="col">Trip Ends</th>
+                <th scope="col">Travel Package</th>
+                <th scope="col">Details</th>
                 <th scope="col" style="border-top-right-radius: 15px;">Actions</th>
             </tr>
         </thead>
@@ -22,17 +24,17 @@
             {
                 var item = Model[i];
                 <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Email</td>
-                    <td>@item.Phone</td>
-                    <td>@item.Address</td>
+                    <td>@item.StartDate.ToString("yyyy-MM-dd")</td>
+                    <td>@item.EndDate.ToString("yyyy-MM-dd")</td>
+                    <td>@item.TravelPackage.Name</td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info" style="width: 3em; margin-right: 0.2em;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5 8-5.5 8-5.5zM8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8z" />
-                                <path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
-                            </svg>
+                        <a asp-action="Details" asp-route-id="@item.Id"
+                           class="btn custom-link">
+                            View All Activities!
                         </a>
+                      
+                        </td>
+                    <td>
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: white; width: 3em; margin-right: 0.2em;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />

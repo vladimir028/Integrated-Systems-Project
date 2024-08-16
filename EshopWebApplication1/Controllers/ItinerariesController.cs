@@ -70,32 +70,36 @@ namespace EshopWebApplication1.Controllers
             {
                 return NotFound();
             }
+            var travelPackages = travelPackageService.GetAllTravelPackages();
+            ViewData["TravelPackageId"] = new SelectList(travelPackages, "Id", "Name");
             return View(itinerary);
         }
 
         // POST: Itineraries/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Email,Phone,Address")] Itinerary itinerary)
+        public async Task<IActionResult> Edit(Guid id, Itinerary itinerary)
         {
             if (id != itinerary.Id)
             {
                 return NotFound();
             }
+            itineraryService.UpdateExistingItinerary(itinerary);
+            return RedirectToAction(nameof(Index));
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    itineraryService.UpdateExistingItinerary(itinerary);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(itinerary);
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        itineraryService.UpdateExistingItinerary(itinerary);
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        throw;
+            //    }
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //return View(itinerary);
         }
 
         // GET: Itineraries/Delete/5
