@@ -103,14 +103,14 @@ namespace EshopWebApplication1.Controllers
         }
 
         // GET: Itineraries/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
-            if (id == null)
+            if (Id == null)
             {
                 return NotFound();
             }
 
-            var itinerary = itineraryService.GetDetailsForItinerary(id);
+            var itinerary = itineraryService.GetDetailsForItinerary(Id);
             if (itinerary == null)
             {
                 return NotFound();
@@ -122,12 +122,12 @@ namespace EshopWebApplication1.Controllers
         // POST: PlannedRoute/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public async Task<IActionResult> DeleteConfirmed(Guid Id)
         {
-            var itinerary = itineraryService.GetDetailsForItinerary(id);
+            var itinerary = itineraryService.GetDetailsForItinerary(Id);
             if (itinerary != null)
             {
-                itineraryService.DeleteItinerary(id);
+                itineraryService.DeleteItinerary(Id);
             }
 
             return RedirectToAction(nameof(Index));

@@ -37,7 +37,14 @@ namespace Eshop.Service.Implementation
 
         public void DeleteItinerary(Guid id)
         {
-           itineraryRepository.Delete(itineraryRepository.Get(id)); 
+            Itinerary itinerary = itineraryRepository.Get(id);
+            TravelPackage travelPackage = travelPackageRepository.Get(itinerary.TravelPackageId);
+            if (travelPackage != null)
+            {
+                travelPackage.AlreadyhasItinerary = false;
+                travelPackageRepository.Update(travelPackage);
+            }
+           itineraryRepository.Delete(itinerary); 
         }
 
         public List<Itinerary> GetAllItineraries()
