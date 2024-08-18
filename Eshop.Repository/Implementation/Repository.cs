@@ -1,4 +1,5 @@
 ﻿using Eshop.DomainEntities;
+using Eshop.DomainEntities.Domain;
 using EShop.Repository.Interface;
 using EshopWebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,14 @@ namespace EShop.Repository.Implementation
             if (typeof(T).IsAssignableFrom(typeof(TravelPackage))) {
                 return entities.Include("Agency").AsEnumerable();
             }
+            if (typeof(T).IsAssignableFrom(typeof(PlannedRoute)))
+            {
+                return entities.Include("Itinerary").Include("Itinerary.TravelPackage").AsEnumerable();
+            }
+            if (typeof(T).IsAssignableFrom(typeof(Itinerary)))
+            {
+                return entities.Include("TravelPackage").AsEnumerable();
+            }
             return entities.AsEnumerable();
         }
 
@@ -34,6 +43,20 @@ namespace EShop.Repository.Implementation
             if (typeof(T).IsAssignableFrom(typeof(TravelPackage)))
             {
                 return entities.Include("Agency").SingleOrDefault(s => s.Id == id);
+            }
+            if (typeof(T).IsAssignableFrom(typeof(PlannedRoute)))
+            {
+                return entities.Include("Itinerary")
+                    .Include("Itinerary.TravelPackage")
+                    .Include("Activities")
+                    .SingleOrDefault(s => s.Id == id);
+            }
+            if (typeof(T).IsAssignableFrom(typeof(Itinerary)))
+            {
+                return entities.Include("TravelPackage")
+                    .Include("PlannedRoutes")
+                    .Include("PlannedRoutes.Activities")
+                    .SingleOrDefault(s => s.Id == id);
             }
             return entities.SingleOrDefault(s => s.Id == id);
         }

@@ -13,6 +13,7 @@ namespace Eshop.DomainEntities
         public string? ImageTextBox {  get; set; }
         public virtual Agency? Agency { get; set; }
         public Guid AgencyId { get; set; }
+        public bool AlreadyhasItinerary { get; set; } = false;
 
     }
 }

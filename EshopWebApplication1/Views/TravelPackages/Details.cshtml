@@ -36,8 +36,20 @@
             <h4>Detailed Description</h4>
             <h6>@Model?.Description</h6>
             <hr />
-            <h4>Itinerary / Planned route</h4>
-            <h6>Treba da se dopravi!!!</h6>
+            <h4>Itinerary</h4>
+            @if (@ViewBag.Itinerary != null)
+            {
+                <h6>Trip Starts: @ViewBag.Itinerary.StartDate.ToString("yyyy-MM-dd")</h6>
+                <h6>Trip Ends: @ViewBag.Itinerary.EndDate.ToString("yyyy-MM-dd")</h6>
+                <a asp-controller="Itineraries" asp-action="Details" asp-route-id="@ViewBag.Itinerary.Id"
+                   class="btn custom-link">
+                    Check Full Itinerary
+                </a>
+            }
+            @if (@ViewBag.Itinerary == null)
+            {
+                <h6>This trip does not have any Itinerary</h6>
+            }
             <hr />
         </div>
         <div class="col-4 p-4 border shadow rounded-3" style="height: 50%">
@@ -51,8 +63,11 @@
                 <div class="container rounded py-2 px-4 bg-dark">
                     <p style="color:#00deb6">Email: <span style="color: white">@Model.Agency.Email</span></p>
                     <p style="color:#00deb6">Call: <span style="color: white">@Model.Agency.Phone</span></p>
-                    <a asp-action="AddToCart" asp-route-id="@Model.Id" class="btn-lg text-center w-100 m-auto rounded" style="background-color: #00deb6; color: white">Book this trip!</a>
-                </div>
+                    <a asp-action="AddToCart" asp-route-id="@Model.Id"
+                       class="btn custom-link">
+                        Book this Trip!
+                    </a>
+                    </div>
             </div>
 
         </div>
