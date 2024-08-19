@@ -110,14 +110,14 @@ namespace EshopWebApplication1.Controllers
         }
 
         // GET: PlannedRoute/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid Id)
         {
-            if (id == null)
+            if (Id == null)
             {
                 return NotFound();
             }
 
-            var agency = plannedRouteService.GetDetailsForPlanningRoute(id);
+            var agency = plannedRouteService.GetDetailsForPlanningRoute(Id);
             if (agency == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace EshopWebApplication1.Controllers
                 plannedRouteService.DeletePlanningRoute(id);
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Itineraries", new { id = plannedRoute.ItineraryId });
         }
     }
 }
