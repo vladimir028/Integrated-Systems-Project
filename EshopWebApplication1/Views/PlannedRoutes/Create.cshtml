@@ -15,7 +15,7 @@
                 @for (int i = 0; i < ViewBag.Count; i++)
                 {
                     var num = i + 1;
-                    <label>Day @num</label>
+                    <h2>Day @num</h2>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="@Model[i].RouteDescription" class="control-label text-highlight"></label>

@@ -12,7 +12,7 @@ namespace Eshop.Service.Interface
         List<PlannedRoute> GetAllPlanningRoutes();
         PlannedRoute GetDetailsForPlanningRoute(Guid? id);
         void CreateNewPlanningRoute(PlannedRoute pr);
-        void UpdateExistingPlanningRoute(PlannedRoute pr);
+        void UpdateExistingPlanningRoute(PlannedRoute previousRoute, PlannedRoute plannedRoute);
         void DeletePlanningRoute(Guid id);
         //itinerartyID
         PlannedRoute getPlanningRouteForItineraty(Guid id);

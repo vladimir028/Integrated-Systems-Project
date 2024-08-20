@@ -45,9 +45,14 @@ namespace Eshop.Service.Implementation
                 .SingleOrDefault(s => s.ItineraryId == id);
         }
 
-        public void UpdateExistingPlanningRoute(PlannedRoute pr)
+        public void UpdateExistingPlanningRoute(PlannedRoute previousRoute, PlannedRoute plannedRoute)
         {
-            plannedRouteRepository.Update(pr);
+
+            previousRoute.Activities.Clear();
+            previousRoute.Activities = plannedRoute.Activities;
+            previousRoute.RouteDescription = plannedRoute.RouteDescription; 
+
+            plannedRouteRepository.Update(previousRoute);
         }
     }
 }

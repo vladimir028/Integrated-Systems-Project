@@ -11,9 +11,11 @@ using System.Security.Claims;
 using Eshop.Service.Interface;
 using Stripe;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EshopWebApplication1.Controllers
 {
+    [Authorize]
     public class ShoppingCartsController : Controller
     {
         private readonly ApplicationDbContext _context;

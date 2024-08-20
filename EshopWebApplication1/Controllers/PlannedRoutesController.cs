@@ -92,8 +92,10 @@ namespace EshopWebApplication1.Controllers
                 return NotFound();
             }
 
-            plannedRouteService.UpdateExistingPlanningRoute(plannedRoute);
-            return RedirectToAction(nameof(Index));
+            PlannedRoute previousRoute = plannedRouteService.GetDetailsForPlanningRoute(id);
+            plannedRouteService.UpdateExistingPlanningRoute(previousRoute, plannedRoute);
+
+            return RedirectToAction("Index", "Itineraries");
             //if (ModelState.IsValid)
             //{
             //    try
