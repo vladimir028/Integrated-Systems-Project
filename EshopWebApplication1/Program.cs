@@ -32,6 +32,8 @@ builder.Services.AddTransient<IAgencyService, AgencyService>();
 builder.Services.AddTransient<ITravelPackageService, TravelPackageService>();
 builder.Services.AddTransient<IItineraryService, ItineraryService>();
 builder.Services.AddTransient<IPlannedRouteService, PlannedRouteService>();
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 

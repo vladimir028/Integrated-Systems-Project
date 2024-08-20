@@ -29,11 +29,19 @@ namespace EShop.Repository.Implementation
             }
             if (typeof(T).IsAssignableFrom(typeof(PlannedRoute)))
             {
-                return entities.Include("Itinerary").Include("Itinerary.TravelPackage").AsEnumerable();
+                return entities.Include("Itinerary")
+                    .Include("Itinerary.TravelPackage").AsEnumerable();
             }
             if (typeof(T).IsAssignableFrom(typeof(Itinerary)))
             {
                 return entities.Include("TravelPackage").AsEnumerable();
+            }
+            if (typeof(T).IsAssignableFrom(typeof(Order)))
+            {
+                return entities
+                    .Include("TravelPackageInOrders")
+                    .Include("TravelPackageInOrders.TravelPackage")
+                    .AsEnumerable();
             }
             return entities.AsEnumerable();
         }
@@ -56,6 +64,13 @@ namespace EShop.Repository.Implementation
                 return entities.Include("TravelPackage")
                     .Include("PlannedRoutes")
                     .Include("PlannedRoutes.Activities")
+                    .SingleOrDefault(s => s.Id == id);
+            }
+            if (typeof(T).IsAssignableFrom(typeof(Order)))
+            {
+                return entities
+                    .Include("TravelPackageInOrders")
+                    .Include("TravelPackageInOrders.TravelPackage")
                     .SingleOrDefault(s => s.Id == id);
             }
             return entities.SingleOrDefault(s => s.Id == id);

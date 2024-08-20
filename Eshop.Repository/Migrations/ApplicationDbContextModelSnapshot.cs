@@ -45,7 +45,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("PlannedRouteId");
 
-                    b.ToTable("Activity");
+                    b.ToTable("Activity", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.Domain.Agency", b =>
@@ -68,7 +68,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Agencies");
+                    b.ToTable("Agencies", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.Domain.Itinerary", b =>
@@ -90,7 +90,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("TravelPackageId");
 
-                    b.ToTable("Itineraries");
+                    b.ToTable("Itineraries", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.Domain.PlannedRoute", b =>
@@ -110,7 +110,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("ItineraryId");
 
-                    b.ToTable("PlannedRoutes");
+                    b.ToTable("PlannedRoutes", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.EmailMessage", b =>
@@ -133,7 +133,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmailMessages");
+                    b.ToTable("EmailMessages", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.EshopApplicationUser", b =>
@@ -226,7 +226,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.ShoppingCart", b =>
@@ -240,7 +240,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.TravelPackage", b =>
@@ -274,7 +274,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("AgencyId");
 
-                    b.ToTable("TravelPackages");
+                    b.ToTable("TravelPackages", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.TravelPackageInOrders", b =>
@@ -298,7 +298,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("TravelPackageId");
 
-                    b.ToTable("TravelPackageInOrders");
+                    b.ToTable("TravelPackageInOrders", (string)null);
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.TravelPackageInShoppingCart", b =>
@@ -322,7 +322,7 @@ namespace EshopWebApplication1.Migrations
 
                     b.HasIndex("TravelPackageId");
 
-                    b.ToTable("TravelPackageInShoppingCarts");
+                    b.ToTable("TravelPackageInShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

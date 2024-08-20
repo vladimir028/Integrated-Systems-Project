@@ -35,59 +35,19 @@ namespace EshopWebApplication1.Controllers
         {
             Itinerary itinerary = itineraryService.GetDetailsForItinerary(id);
 
-            if(itinerary.PlannedRoutes.Count() != itinerary.getInitialSize() || itinerary.PlannedRoutes.Count() == 0)
+            if (itinerary.PlannedRoutes.Count() != itinerary.getInitialSize() || itinerary.PlannedRoutes.Count() == 0)
             {
                 ViewBag.ItineraryId = id;
                 ViewBag.Count = itinerary.getInitialSize();
-                var model = new List<PlannedRoute>();
-                if(itinerary.PlannedRoutes.Count() != itinerary.getInitialSize())
-                {
-                    List<PlannedRoute> planningRoutes = itinerary.PlannedRoutes;
-                    model = new List<PlannedRoute>(itinerary.getInitialSize());
-                    model.AddRange(planningRoutes);
-                }
-               
-                for (int i = 0; i < ViewBag.Count; i++)
-                {
-                    PlannedRoute plannedRoute = new PlannedRoute();
-                    plannedRoute.Activities = new List<Activity>(5);
-                    for (int j = 0; j < 5; j++)
-                    {
-                        Activity activity = new Activity();
-                        plannedRoute.Activities.Add(activity);
-                    }
-                    model.Add(plannedRoute);
-                }
-                return View(model);
 
-                //if (itinerary.PlannedRoutes.Count() == 0)
-                //{
-                   
-                //}
-                //ViewBag.ItineraryId = id;
-                //ViewBag.Count = itinerary.getInitialSize();
-                
-                //var model = new List<PlannedRoute>(itinerary.getInitialSize());
-                //model.AddRange(planningRoutes);
-                //for (int i = 0; i < ViewBag.Count; i++)
-                //{
-                //    PlannedRoute plannedRoute = new PlannedRoute();
-                //    plannedRoute.Activities = new List<Activity>(5);
-                //    for (int j = 0; j < 5; j++)
-                //    {
-                //        Activity activity = new Activity();
-                //        plannedRoute.Activities.Add(activity);
-                //    }
-                //    model.Add(plannedRoute);
-                //}
-                //return View(model);
-                //return RedirectToAction("CanAdd");
+                var model = plannedRouteService.InitializePlannedRoutes(itinerary);
+
+                return View(model);
             }
             else
             {
                 return RedirectToAction("CanNotAdd");
             }
-           
         }
         public IActionResult CanNotAdd()
         {

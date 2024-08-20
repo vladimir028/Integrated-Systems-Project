@@ -119,7 +119,7 @@ namespace EshopWebApplication1.Controllers
             return View(itinerary);
         }
 
-        // POST: PlannedRoute/Delete/5
+        // POST: Itineraries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid Id)

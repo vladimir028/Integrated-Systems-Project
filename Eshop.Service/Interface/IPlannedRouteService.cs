@@ -16,5 +16,6 @@ namespace Eshop.Service.Interface
         void DeletePlanningRoute(Guid id);
         //itinerartyID
         PlannedRoute getPlanningRouteForItineraty(Guid id);
+        List<PlannedRoute> InitializePlannedRoutes(Itinerary itinerary);
     }
 }

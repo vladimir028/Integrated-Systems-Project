@@ -45,6 +45,33 @@ namespace Eshop.Service.Implementation
                 .SingleOrDefault(s => s.ItineraryId == id);
         }
 
+        public List<PlannedRoute> InitializePlannedRoutes(Itinerary itinerary)
+        {
+            List<PlannedRoute> model = new List<PlannedRoute>(itinerary.getInitialSize());
+
+            if (itinerary.PlannedRoutes.Count != itinerary.getInitialSize())
+            {
+                model.AddRange(itinerary.PlannedRoutes);
+            }
+
+            for (int i = model.Count; i < itinerary.getInitialSize(); i++)
+            {
+                PlannedRoute plannedRoute = new PlannedRoute
+                {
+                    Activities = new List<Activity>(5)
+                };
+
+                for (int j = 0; j < 5; j++)
+                {
+                    plannedRoute.Activities.Add(new Activity());
+                }
+
+                model.Add(plannedRoute);
+            }
+
+            return model;
+        }
+
         public void UpdateExistingPlanningRoute(PlannedRoute previousRoute, PlannedRoute plannedRoute)
         {
 
