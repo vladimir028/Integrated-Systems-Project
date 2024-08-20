@@ -4,6 +4,8 @@
     ViewData["Title"] = "Details";
 }
 
+<a asp-action="Create" asp-controller="PlannedRoutes" asp-route-id="@Model.Id" class="btn btn-primary mb-4" style="background-color: #00deb6; border-color: #00deb6; color: black">Create New Activity for @Model.TravelPackage.Name</a>
+
 <div style="background-color: #F2F3F4; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
     <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
         <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
