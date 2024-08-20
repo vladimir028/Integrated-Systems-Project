@@ -14,6 +14,7 @@ namespace Eshop.DomainEntities
         public virtual Agency? Agency { get; set; }
         public Guid AgencyId { get; set; }
         public bool AlreadyhasItinerary { get; set; } = false;
+        public Itinerary Itinerary { get; set; }
 
     }
 }

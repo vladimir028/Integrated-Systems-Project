@@ -1,4 +1,5 @@
-﻿using Eshop.DomainEntities.DTO;
+﻿using Eshop.DomainEntities;
+using Eshop.DomainEntities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Eshop.Service.Interface
 {
     public interface IOrderService
     {
-        IEnumerable<OrderDetailsDto> GetAllOrderDetails();
+        IEnumerable<Order> GetAllOrderDetails();
     }
 }

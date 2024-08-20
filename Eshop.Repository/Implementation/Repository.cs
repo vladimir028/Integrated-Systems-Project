@@ -25,7 +25,10 @@ namespace EShop.Repository.Implementation
         public IEnumerable<T> GetAll()
         {
             if (typeof(T).IsAssignableFrom(typeof(TravelPackage))) {
-                return entities.Include("Agency").AsEnumerable();
+                return entities.Include("Itinerary")
+                     .Include("Itinerary.PlannedRoutes")
+                     .Include("Itinerary.PlannedRoutes.Activities")
+                     .Include("Agency").AsEnumerable();
             }
             if (typeof(T).IsAssignableFrom(typeof(PlannedRoute)))
             {
@@ -34,13 +37,16 @@ namespace EShop.Repository.Implementation
             }
             if (typeof(T).IsAssignableFrom(typeof(Itinerary)))
             {
-                return entities.Include("TravelPackage").AsEnumerable();
+                return entities.Include("TravelPackage").Include("PlannedRoutes")
+                    .Include("PlannedRoutes.Activities").AsEnumerable();
             }
             if (typeof(T).IsAssignableFrom(typeof(Order)))
             {
                 return entities
                     .Include("TravelPackageInOrders")
-                    .Include("TravelPackageInOrders.TravelPackage")
+                    .Include("TravelPackageInOrders.TravelPackage.Itinerary")
+                    .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes")
+                    .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes.Activities")
                     .AsEnumerable();
             }
             return entities.AsEnumerable();
@@ -50,7 +56,10 @@ namespace EShop.Repository.Implementation
         {
             if (typeof(T).IsAssignableFrom(typeof(TravelPackage)))
             {
-                return entities.Include("Agency").SingleOrDefault(s => s.Id == id);
+                return entities.Include("Itinerary")
+                     .Include("Itinerary.PlannedRoutes")
+                     .Include("Itinerary.PlannedRoutes.Activities")
+                     .Include("Agency").SingleOrDefault(s => s.Id == id);
             }
             if (typeof(T).IsAssignableFrom(typeof(PlannedRoute)))
             {

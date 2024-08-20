@@ -19,24 +19,9 @@ namespace Eshop.Service.Implementation
             _userRepository = userRepository;
         }
 
-        public IEnumerable<OrderDetailsDto> GetAllOrderDetails()
+        public IEnumerable<Order> GetAllOrderDetails()
         {
-            var orders = _orderRepository.GetAll();
-
-            var orderDetails = orders.Select(order => {
-                var user = _userRepository.Get(order.EshopApplicationUserId.ToString());
-                return new OrderDetailsDto
-                {
-                    Email = user?.Email,
-                    FirstName = user?.FirstName,
-                    LastName = user?.LastName,
-                    TravelPackageName = order.TravelPackageInOrders?.FirstOrDefault()?.TravelPackage?.Name,
-                    TotalPrice = order.TravelPackageInOrders?
-                        .Sum(tpo => tpo.NumberOfTravelers * tpo.TravelPackage!.Price) ?? 0
-                };
-            }).ToList();
-
-            return orderDetails;
+            return _orderRepository.GetAll();
         }
     }
 }

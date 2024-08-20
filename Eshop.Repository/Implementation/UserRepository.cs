@@ -24,7 +24,10 @@ namespace Eshop.Repository.Implementation
         }
         public IEnumerable<EshopApplicationUser> GetAll()
         {
-            return entities.AsEnumerable();
+            return entities.Include(z => z.UserCart)
+                .Include(z => z.UserCart.TravelPackagesInShoppingCarts)
+                .Include("UserCart.TravelPackagesInShoppingCarts.TravelPackage")
+                .AsEnumerable();
         }
 
         public EshopApplicationUser Get(string id)

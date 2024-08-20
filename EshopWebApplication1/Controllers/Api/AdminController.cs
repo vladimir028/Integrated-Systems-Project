@@ -39,7 +39,7 @@ namespace EshopWebApplication1.Controllers.Api
         }
 
         [HttpGet("[action]")]
-        public List<OrderDetailsDto> GetAllOrders()
+        public List<Order> GetAllOrders()
         {
             return this.orderService.GetAllOrderDetails().ToList();
         }
