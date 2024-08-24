@@ -43,6 +43,7 @@ namespace EShop.Repository.Implementation
             if (typeof(T).IsAssignableFrom(typeof(Order)))
             {
                 return entities
+                    .Include("EshopApplicationUser")
                     .Include("TravelPackageInOrders")
                     .Include("TravelPackageInOrders.TravelPackage.Itinerary")
                     .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes")
@@ -78,8 +79,11 @@ namespace EShop.Repository.Implementation
             if (typeof(T).IsAssignableFrom(typeof(Order)))
             {
                 return entities
+                   .Include("EshopApplicationUser")
                     .Include("TravelPackageInOrders")
-                    .Include("TravelPackageInOrders.TravelPackage")
+                    .Include("TravelPackageInOrders.TravelPackage.Itinerary")
+                    .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes")
+                    .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes.Activities")
                     .SingleOrDefault(s => s.Id == id);
             }
             return entities.SingleOrDefault(s => s.Id == id);

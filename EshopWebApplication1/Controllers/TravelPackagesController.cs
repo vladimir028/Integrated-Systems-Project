@@ -120,20 +120,22 @@ namespace EshopWebApplication1.Controllers
             {
                 return NotFound();
             }
+            _travelPackageService.UpdeteExistingTravelPackage(travelPackage);
+            return RedirectToAction(nameof(Index));
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _travelPackageService.UpdeteExistingTravelPackage(travelPackage);
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(travelPackage);
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        _travelPackageService.UpdeteExistingTravelPackage(travelPackage);
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        throw;
+            //    }
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //return View(travelPackage);
         }
 
         // GET: TravelPackage/Delete/5

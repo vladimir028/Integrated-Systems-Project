@@ -23,5 +23,10 @@ namespace Eshop.Service.Implementation
         {
             return _orderRepository.GetAll();
         }
+
+        public Order GetDetailsForOrder(BaseEntity model)
+        {
+            return _orderRepository.Get(model.Id);
+        }
     }
 }

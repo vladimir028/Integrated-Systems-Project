@@ -11,5 +11,6 @@ namespace Eshop.Service.Interface
     public interface IOrderService
     {
         IEnumerable<Order> GetAllOrderDetails();
+        Order GetDetailsForOrder(BaseEntity model);
     }
 }

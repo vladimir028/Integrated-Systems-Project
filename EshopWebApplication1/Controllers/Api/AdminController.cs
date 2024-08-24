@@ -44,6 +44,12 @@ namespace EshopWebApplication1.Controllers.Api
             return this.orderService.GetAllOrderDetails().ToList();
         }
 
+        [HttpPost("[action]")]
+        public Order GetDetailsForOrder(BaseEntity model)
+        {
+            return this.orderService.GetDetailsForOrder(model);
+        }
+
         [HttpGet("[action]")]
         public List<Itinerary> GetAllItineraries()
         {
