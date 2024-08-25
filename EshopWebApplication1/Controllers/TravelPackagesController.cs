@@ -10,6 +10,7 @@ using Eshop.DomainEntities;
 using System.Security.Claims;
 using Eshop.Service.Interface;
 using Eshop.DomainEntities.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EshopWebApplication1.Controllers
 {
@@ -82,6 +83,7 @@ namespace EshopWebApplication1.Controllers
             return View("Index", _travelPackageService.GetAllTravelPackages());
         }
 
+        [Authorize]
         public async Task<IActionResult> AddToCart(Guid? id)
         {
             if (id == null)
