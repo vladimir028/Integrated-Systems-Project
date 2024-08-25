@@ -23,16 +23,34 @@ namespace Eshop.Service.Implementation
 
         public bool CreateNewItinerary(Itinerary i)
         {
-            itineraryRepository.Insert(i);
-            Itinerary itinerary = itineraryRepository.Get(i.Id);
-            if (!itinerary.TravelPackage.AlreadyhasItinerary)
-            {
-                itinerary.TravelPackage.AlreadyhasItinerary = true;
-                travelPackageRepository.Update(travelPackageRepository.Get(itinerary.TravelPackageId));
-                return true;
+            if (i.StartDate.CompareTo(i.EndDate) >= 0) {
+                return false;
             }
-            itineraryRepository.Delete(itinerary);
-            return false;
+            List<Itinerary> itineraries =  itineraryRepository.GetAll().ToList();
+            for(int j =0; j<itineraries.Count(); j++)
+            {
+                Itinerary itinerary = itineraries.ElementAt(j);
+                if (itinerary.TravelPackageId.Equals(i.TravelPackageId)){
+                    return false;
+                }
+            }
+            TravelPackage travelPackage =  travelPackageRepository.Get(i.TravelPackageId);
+            travelPackage.AlreadyhasItinerary = true;
+            travelPackageRepository.Update(travelPackage);
+            itineraryRepository.Insert(i);
+            return true;
+
+
+            //itineraryRepository.Insert(i);
+            //Itinerary itinerary = itineraryRepository.Get(i.Id);
+            //if (!itinerary.TravelPackage.AlreadyhasItinerary)
+            //{
+            //    itinerary.TravelPackage.AlreadyhasItinerary = true;
+            //    travelPackageRepository.Update(travelPackageRepository.Get(itinerary.TravelPackageId));
+            //    return true;
+            //}
+            //itineraryRepository.Delete(itinerary);
+            //return false;
         }
 
         public void DeleteItinerary(Guid id)

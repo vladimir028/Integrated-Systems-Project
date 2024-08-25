@@ -37,16 +37,16 @@
             <h6>@Model?.Description</h6>
             <hr />
             <h4>Itinerary</h4>
-            @if (@ViewBag.Itinerary != null)
+            @if (Model.Itinerary != null)
             {
-                <h6>Trip Starts: @ViewBag.Itinerary.StartDate.ToString("yyyy-MM-dd")</h6>
-                <h6>Trip Ends: @ViewBag.Itinerary.EndDate.ToString("yyyy-MM-dd")</h6>
-                <a asp-controller="Itineraries" asp-action="Details" asp-route-id="@ViewBag.Itinerary.Id"
+                <h6>Trip Starts: @Model.Itinerary.StartDate.ToString("yyyy-MM-dd")</h6>
+                <h6>Trip Ends: @Model.Itinerary.EndDate.ToString("yyyy-MM-dd")</h6>
+                <a asp-controller="Itineraries" asp-action="Details" asp-route-id="@Model.Itinerary.Id"
                    class="btn custom-link">
                     Check Full Itinerary
                 </a>
             }
-            @if (@ViewBag.Itinerary == null)
+            @if (Model.Itinerary == null)
             {
                 <h6>This trip does not have any Itinerary</h6>
             }

@@ -116,7 +116,7 @@ namespace EshopWebApplication1.Controllers
         // POST: TravelPackage/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Price,Description,ImageTextBox,AgencyId")] TravelPackage travelPackage)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Price,Description,ImageTextBox,AgencyId,AlreadyhasItineraryF")] TravelPackage travelPackage)
         {
             if (id != travelPackage.Id)
             {
