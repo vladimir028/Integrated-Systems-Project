@@ -9,6 +9,8 @@ using EshopWebApplication1.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
+using Eshop.Service.PetAdoptionCenter.Interface;
+using Eshop.Service.PetAdoptionCenter.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +35,7 @@ builder.Services.AddTransient<IAgencyService, AgencyService>();
 builder.Services.AddTransient<ITravelPackageService, TravelPackageService>();
 builder.Services.AddTransient<IItineraryService, ItineraryService>();
 builder.Services.AddTransient<IPlannedRouteService, PlannedRouteService>();
+builder.Services.AddTransient<IPetsService, PetsService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 

@@ -1,0 +1,163 @@
+﻿@model List<Eshop.DomainEntities.PetAdoptionCenter.Pet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- House Trained Animals -->
+<div style="background-color: #F2F3F4; padding: 20px; border-radius: 15px;">
+    <h3 class="text-center">House Trained Animals</h3>
+    <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
+        <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Shelter</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.IsHouseTrained))
+        {
+            <tr>
+                <td><img width="200px"; height="150px"; src="@item.PhotoUrl"/></td>
+                <td>@item.Name</td>
+                <td>@(item.Age > 0 ? $"{item.Age} years old" : "Not specified")</td>
+                <td>@item.Shelter.FirstName (Pet Shelter)</td>
+                <td>@item.PetStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Not House Trained Animals -->
+<h3 class="text-center">Not House Trained Animals</h3>
+    <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
+        <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Shelter</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => !p.IsHouseTrained))
+        {
+            <tr>
+                <td><img width="200px" ; height="150px" ; src="@item.PhotoUrl" /></td>
+                <td>@item.Name</td>
+                <td>@(item.Age > 0 ? $"{item.Age} years old" : "Not specified")</td>
+                <td>@item.Shelter.FirstName (Pet Shelter)</td>
+                <td>@item.PetStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Young Animals (Age 1 or Below) -->
+<h3 class="text-center">Young Animals (Age 1 or Below)</h3>
+    <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
+        <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Shelter</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.Age <= 1))
+        {
+            <tr>
+                <td><img width="200px" ; height="150px" ; src="@item.PhotoUrl" /></td>
+                <td>@item.Name</td>
+                <td>@(item.Age > 0 ? $"{item.Age} years old" : "Not specified")</td>
+                <td>@item.Shelter.FirstName (Pet Shelter)</td>
+                <td>@item.PetStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Older Animals (Age Above 1) -->
+<h3 class="text-center">Older Animals (Age Above 1)</h3>
+    <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
+        <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Shelter</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.Age > 1))
+        {
+            <tr>
+                <td><img width="200px" ; height="150px" ; src="@item.PhotoUrl" /></td>
+                <td>@item.Name</td>
+                <td>@(item.Age > 0 ? $"{item.Age} years old" : "Not specified")</td>
+                <td>@item.Shelter.FirstName (Pet Shelter)</td>
+                <td>@item.PetStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Available Animals -->
+<h3 class="text-center">Available Animals</h3>
+    <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
+        <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Shelter</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.PetStatus == Eshop.DomainEntities.PetAdoptionCenter.Enum.PetStatus.AVAILABLE_FOR_ADOPTION))
+        {
+            <tr>
+                <td><img width="200px" ; height="150px" ; src="@item.PhotoUrl" /></td>
+                <td>@item.Name</td>
+                <td>@(item.Age > 0 ? $"{item.Age} years old" : "Not specified")</td>
+                <td>@item.Shelter.FirstName (Pet Shelter)</td>
+                <td>@item.PetStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Adopted Animals -->
+<h3 class="text-center">Adopted Animals</h3>
+    <table class="table table-bordered" style="border-radius: 15px; overflow: hidden;">
+        <thead style="background: linear-gradient(90deg, #00deb6, #009277); color: black;">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Shelter</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.PetStatus == Eshop.DomainEntities.PetAdoptionCenter.Enum.PetStatus.ADOPTED))
+        {
+            <tr>
+                <td><img width="200px" ; height="150px" ; src="@item.PhotoUrl" /></td>
+                <td>@item.Name</td>
+                <td>@(item.Age > 0 ? $"{item.Age} years old" : "Not specified")</td>
+                <td>@item.Shelter.FirstName (Pet Shelter)</td>
+                <td>@item.PetStatus</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,5 +1,6 @@
 ﻿using Eshop.DomainEntities;
 using Eshop.DomainEntities.Domain;
+using Eshop.DomainEntities.PetAdoptionCenter;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ namespace EshopWebApplication1.Data
         public DbSet<EmailMessage> EmailMessages { get; set; }
         public DbSet<Itinerary> Itineraries { get; set; }
         public DbSet<PlannedRoute> PlannedRoutes { get; set; }
+        public DbSet<Pet> Pets { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : base(options)
         { }

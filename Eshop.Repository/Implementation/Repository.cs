@@ -1,5 +1,6 @@
 ﻿using Eshop.DomainEntities;
 using Eshop.DomainEntities.Domain;
+using Eshop.DomainEntities.PetAdoptionCenter;
 using EShop.Repository.Interface;
 using EshopWebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,13 @@ namespace EShop.Repository.Implementation
                     .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes.Activities")
                     .AsEnumerable();
             }
+            if (typeof(T).IsAssignableFrom(typeof(Pet)))
+            {
+                return entities
+             .Include("Shelter")
+             .AsEnumerable();
+            }
+
             return entities.AsEnumerable();
         }
 
@@ -85,6 +93,12 @@ namespace EShop.Repository.Implementation
                     .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes")
                     .Include("TravelPackageInOrders.TravelPackage.Itinerary.PlannedRoutes.Activities")
                     .SingleOrDefault(s => s.Id == id);
+            }
+            if (typeof(T).IsAssignableFrom(typeof(Pet)))
+            {
+                return entities
+                .Include("Shelter")
+                .SingleOrDefault(x => x.Id == id);
             }
             return entities.SingleOrDefault(s => s.Id == id);
         }

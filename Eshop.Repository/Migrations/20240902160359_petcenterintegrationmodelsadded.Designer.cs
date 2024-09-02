@@ -4,6 +4,7 @@ using EshopWebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EshopWebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240902160359_petcenterintegrationmodelsadded")]
+    partial class petcenterintegrationmodelsadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,119 +236,6 @@ namespace EshopWebApplication1.Migrations
                     b.HasIndex("EshopApplicationUserId1");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Eshop.DomainEntities.PetAdoptionCenter.Pet", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Breed")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FavouriteThings")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HomeRequirements")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsHouseTrained")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PetStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PetType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PhotoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Sex")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShelterId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ShelterId");
-
-                    b.ToTable("Pets");
-                });
-
-            modelBuilder.Entity("Eshop.DomainEntities.PetAdoptionCenter.PetAdoptionCenterUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PetAdoptionCenterUser");
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.ShoppingCart", b =>
@@ -632,15 +522,6 @@ namespace EshopWebApplication1.Migrations
                     b.Navigation("EshopApplicationUser");
                 });
 
-            modelBuilder.Entity("Eshop.DomainEntities.PetAdoptionCenter.Pet", b =>
-                {
-                    b.HasOne("Eshop.DomainEntities.PetAdoptionCenter.PetAdoptionCenterUser", "Shelter")
-                        .WithMany("Pets")
-                        .HasForeignKey("ShelterId");
-
-                    b.Navigation("Shelter");
-                });
-
             modelBuilder.Entity("Eshop.DomainEntities.TravelPackage", b =>
                 {
                     b.HasOne("Eshop.DomainEntities.Domain.Agency", "Agency")
@@ -754,11 +635,6 @@ namespace EshopWebApplication1.Migrations
             modelBuilder.Entity("Eshop.DomainEntities.Order", b =>
                 {
                     b.Navigation("TravelPackageInOrders");
-                });
-
-            modelBuilder.Entity("Eshop.DomainEntities.PetAdoptionCenter.PetAdoptionCenterUser", b =>
-                {
-                    b.Navigation("Pets");
                 });
 
             modelBuilder.Entity("Eshop.DomainEntities.ShoppingCart", b =>
