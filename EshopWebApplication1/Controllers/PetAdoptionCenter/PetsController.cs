@@ -25,17 +25,13 @@ namespace EshopWebApplication1.Controllers.PetAdoptionCenter
             HttpResponseMessage response = client.GetAsync(URL).Result;
 
             var data = response.Content.ReadAsAsync<List<Pet>>().Result;
-            List<Pet> allPets = petsService.GetAllPets();
-            if (allPets.Count() == 0)
+            for (int i = 0; i < data.Count(); i++)
             {
-                for (int i = 0; i < data.Count(); i++)
-                {
-                    Pet pet = data[i];
-                    petsService.CreateNewPet(pet);
+                Pet pet = data[i];
+                petsService.CreateNewPet(pet);
 
-                }
             }
-            allPets = petsService.GetAllPets();
+            List<Pet> allPets = petsService.GetAllPets();
             return View(allPets);
         }
     }
