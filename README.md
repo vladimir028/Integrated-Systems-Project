@@ -11,6 +11,7 @@ The program is hosted on Azure Cloud, and you can access it at the following lin
 Technologies Used:
 * Backend: .NET Core
 * Architecture: Onion Architecture
+
 Authors:
 * Vladimir Grncharovski
 * Slavko Trajkovski
